@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSS EchoMine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🩺 JSS EchoMine</h1>
+        <p>Convert semi-structured echo reports into clean, structured data.</p>
+
+        <form action="/extract" method="post" enctype="multipart/form-data">
+            <input type="file" name="pdf_files" accept=".pdf" multiple required>
+            <button type="submit">Run Extraction</button>
+        </form>
+
+        {% if result %}
+            <div class="result">{{ result }}</div>
+            {% if download_link %}
+                <a href="{{ download_link }}" class="download-btn">⬇️ Download Excel</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
